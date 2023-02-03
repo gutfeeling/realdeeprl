@@ -1,0 +1,19 @@
+dependencies:
+  - python=3.9
+  - gym-all=0.21.0
+  # ray[rllib]==1.11 requires grpcio<=1.43.0,>=1.28.1 installed via conda (not pip)
+  # https://docs.ray.io/en/releases-1.11.0/ray-overview/installation.html#m1-mac-apple-silicon-support
+  # tensorflow-macos==2.10.0 requires grpcio>=1.37.0,<2.0
+  # https://anaconda.org/apple/tensorflow-deps
+  - grpcio=1.43.0
+  - pip
+  - pip:
+      - jupyterlab
+      - ray[rllib]==1.11
+      # tensorflow-macos==2.10.0 requires h5py>=3.6.0,<3.7, which depends upon non-pip package hdf5
+      # https://anaconda.org/apple/tensorflow-deps
+      # hdf5 is a dependency of gym-all, so we don't have to specify it explicitly
+      - tensorflow-macos==2.10.0
+      # You need tensorflow-metal to enable tensorflow to use the GPU. But currently there is a bug which makes CPU and
+      # GPU results vary. Best not to use it.
+      # - tensorflow-metal

@@ -1,4 +1,5 @@
 import gym
+from gym.wrappers.normalize import NormalizeObservation
 from gym.spaces import Box
 import numpy as np
 
@@ -37,3 +38,10 @@ class MyScaleReward(gym.RewardWrapper):
         linearly_mapped_reward = 2 * (reward - mid) / (avg_high_scale - avg_low_scale)
         return np.arctan(linearly_mapped_reward) / np.arctan(1)
 
+
+class GymNormalizeObservation(NormalizeObservation):
+    def __init__(self, env, *args, **kwargs):
+        super().__init__(env, *args, **kwargs)
+        self.observation_space = Box(low=np.ones((self.env.obs_dim,)) * -np.inf,
+                                     high=np.ones((self.env.obs_dim,)) * np.inf
+                                     )

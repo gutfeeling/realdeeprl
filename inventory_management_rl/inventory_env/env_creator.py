@@ -4,7 +4,7 @@ from inventory_env.inventory_env import InventoryEnv
 from inventory_env.wrappers import MyNormalizeObservation, MyScaleReward, GymNormalizeObservation
 
 
-def inventory_env_creator(config):
+def inventory_env_creator(config, seed=None):
     obs_filter = config.pop("obs_filter", None)
     reward_filter = config.pop("reward_filter", None)
     env = InventoryEnv()
@@ -18,4 +18,6 @@ def inventory_env_creator(config):
             env = MyScaleReward(env)
         elif reward_filter == "gym_scale_rewards":
             env = NormalizeReward(env)
+    if seed is not None:
+        env.seed(seed=seed)
     return env

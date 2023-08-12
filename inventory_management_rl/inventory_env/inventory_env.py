@@ -6,7 +6,7 @@ from scipy.stats import poisson
 
 
 class InventoryEnv(gym.Env):
-    def __init__(self, config=None):
+    def __init__(self):
         """
         Must define self.observation_space and self.action_space here
         """

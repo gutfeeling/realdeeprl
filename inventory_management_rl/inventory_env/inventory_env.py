@@ -108,7 +108,7 @@ class InventoryEnv(gym.Env):
         self.current_obs = next_obs
 
         # info must be a dict
-        return self.current_obs, reward, done, {}
+        return self.current_obs, reward, done, {"demand": demand}
 
     def render(self, mode="human"):
         """

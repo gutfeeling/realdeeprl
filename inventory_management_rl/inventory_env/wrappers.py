@@ -29,7 +29,7 @@ class MyScaleReward(gym.RewardWrapper):
         avg_unit_buying_price = self.env.max_unit_selling_price / 4
         avg_daily_holding_cost_per_unit = self.env.max_daily_holding_cost_per_unit / 2
         avg_num_items_held_per_day = self.env.max_mean_daily_demand / 2
-        avg_high_scale = avg_unit_buying_price * avg_num_items_sold_per_day
+        avg_high_scale = avg_unit_selling_price * avg_num_items_sold_per_day
         avg_low_scale = - (avg_unit_buying_price * avg_num_items_bought_per_day +
                            avg_daily_holding_cost_per_unit * avg_num_items_held_per_day
                            )
